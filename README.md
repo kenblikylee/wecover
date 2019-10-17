@@ -21,22 +21,22 @@ pip install --upgrade wecover
 
 ## 使用
 
+### 命令行格式
+
+``` sh
+wecover <title> [logo_path|logo_url]
+
+wecover --title|-t <title> [--logo|-l <logo_path|logo_url>]
+```
+
 ### 基本使用
 
 ``` sh
-wecover --logo logo.png --title "算法分析"
-wecover -l logo.png -t "算法分析"
-wecover logo.png 算法分析
-```
-
-### 改变标题和背景颜色
-
-标题字体默认为黑色，背景为白色。如果需要改变默认颜色，需要用到选项 `--color/-c` 和 `--bgcolor/-b`。
-
-``` sh
-wecover logo.png "算法分析 (一)" --color "#ffffff" --bgcolor "#000000" 
-wecover logo.png "算法分析 (一)" -c "#ffffff" -b "#000000" 
-wecover logo.png "算法分析 (一)" "#ffffff" "#000000" 
+wecover 微信图文封面制作工具
+wecover 微信图文封面制作工具 logo.png
+wecover 微信图文封面制作工具 "http://cdn.kenblog.top/weixin.jpeg"
+wecover --logo logo.png --title "wecover 微信图文封面制作工具"
+wecover -l logo.png -t "wecover 微信图文封面制作工具"
 ```
 
 ## License

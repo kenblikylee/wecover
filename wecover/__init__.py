@@ -1,5 +1,6 @@
 import sys
 import re
+import glob
 from .image import openimg
 
 __version__ = '0.1.0'
@@ -22,17 +23,63 @@ def _parse_args(args_list):
     return args, targets
 
 def _print_welcom():
-    print('=========================================\nHi, guy! Welcome to use wecover v{} !\nhttps://github.com/kenblikylee/wecover\n-----------------------------------------'.format(__version__))
+    _print_run()
+    print('\u001b[32m使用:\u001b[0m wecover <title> [logo_path|logo_url]')
 
 def _print_run():
-    print('run wecover v{} ...'.format(__version__))
+    print('\u001b[1mwecover v{}\u001b[0m'.format(__version__))
+    print('\u001b[4mhttps://github.com/kenblikylee/wecover\u001b[0m')
+
+def _is_image(img):
+    return re.search('\.(jpg|jpeg|png)$', img)
+
+def _auto_search_log():
+    logos = glob.glob('./logo.*')
+    for logo in logos:
+        if re.search('logo\.(jpg|jpeg|png)$', logo):
+            return logo
+    return None
+
+def _warn_print(text):
+    print('\u001b[31m{}\u001b[0m'.format(text))
 
 def run(params):
     args, targets = params
-    print('args', args)
-    print('targets', targets)
+
+    # 读取 logo
+    logo = None
     if 'logo' in args:
-        openimg(args['logo']).show()
+        logo = args['logo']
+    elif 'l' in args:
+        logo = args['l']
+    elif len(targets) > 1:
+        logo = targets[1]
+    else:
+        logo = _auto_search_log()
+
+    if logo:
+        print('logo: {}'.format(logo))
+        if _is_image(logo):
+            logo = openimg(logo)
+        else:
+            _warn_print('logo 图片格式只支持: .jpg .jpeg .png'.format(logo))
+            logo = None
+        if logo:
+            print('size: {}*{}'.format(*logo.size))
+
+    # 读取标题
+    title = None
+    if 'title' in args:
+        title = args['title']
+    elif 't' in args:
+        title = args['t']
+    elif len(targets):
+        title = targets[0]
+
+    if not title:
+        _warn_print('请提供封面标题')
+        exit(-1)
+    print('title: {}'.format(title))
 
 def main():
     cmds = sys.argv[1:]
