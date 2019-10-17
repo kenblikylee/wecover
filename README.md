@@ -13,6 +13,12 @@
 pip install wecover
 ```
 
+*如果使用国内镜像(如清华的)，未及时同步，请切换官方镜像：*
+
+``` sh
+pip install --index-url https://pypi.org/simple wecover
+```
+
 如果已经安装，可更新到最新版：
 
 ``` sh
