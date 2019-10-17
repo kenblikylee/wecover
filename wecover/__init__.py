@@ -1,5 +1,6 @@
 import sys
 import re
+from .image import openimg
 
 __version__ = '0.1.0'
 
@@ -30,6 +31,8 @@ def run(params):
     args, targets = params
     print('args', args)
     print('targets', targets)
+    if 'logo' in args:
+        openimg(args['logo']).show()
 
 def main():
     cmds = sys.argv[1:]
