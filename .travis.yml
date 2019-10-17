@@ -3,4 +3,4 @@ install:
   - pip install requests
   - pip install Pillow
   - pip install -e . --progress-bar off
-script: wecover 微信图文封面制作工具 "http://cdn.kenblog.top/weixin.jpeg"
+script: wecover
