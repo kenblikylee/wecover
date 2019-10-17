@@ -1,7 +1,7 @@
 import sys
 import re
 import glob
-from .image import openimg
+from .image import openimg, makecover
 
 __version__ = '0.1.0'
 
@@ -46,6 +46,20 @@ def _warn_print(text):
 def run(params):
     args, targets = params
 
+    # 读取标题
+    title = None
+    if 'title' in args:
+        title = args['title']
+    elif 't' in args:
+        title = args['t']
+    elif len(targets):
+        title = targets[0]
+
+    if not title:
+        _warn_print('请提供封面标题')
+        exit(-1)
+    print('title: {}'.format(title))
+
     # 读取 logo
     logo = None
     if 'logo' in args:
@@ -67,19 +81,7 @@ def run(params):
         if logo:
             print('size: {}*{}'.format(*logo.size))
 
-    # 读取标题
-    title = None
-    if 'title' in args:
-        title = args['title']
-    elif 't' in args:
-        title = args['t']
-    elif len(targets):
-        title = targets[0]
-
-    if not title:
-        _warn_print('请提供封面标题')
-        exit(-1)
-    print('title: {}'.format(title))
+    makecover(title, logo)
 
 def main():
     cmds = sys.argv[1:]
