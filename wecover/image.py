@@ -91,15 +91,6 @@ def makecover(title, logo=None, color='#000', logo_size=(120, 120), cover_height
     cover_size = (cover_width, cover_height)
     print('cover size: {}*{}'.format(*cover_size))
     canvas = create_canvas(cover_size)
-    # 粘贴 LOGO
-    if logo:
-        logo = process_logo(logo, logo_size)
-        logo_width, logo_height = logo.size
-        # logo.save('wecover_logo_{}_{}.png'.format(logo_width, logo_height))
-        logo_y = round((cover_height - logo_height)/2)
-        logo_x = logo_y
-        logo_position = (logo_x, logo_y)
-        canvas.paste(logo, logo_position)
 
     draw = ImageDraw.Draw(canvas)
     # 绘制标题
@@ -110,10 +101,26 @@ def makecover(title, logo=None, color='#000', logo_size=(120, 120), cover_height
         _warn_print('UnicodeEncodeError: 当前字体不支持中文')
         exit(-1)
     print('title size: {}*{}'.format(title_width, title_height))
-    title_y = round((cover_height - title_height)/2) - 20
+    title_y = round((cover_height - title_height)/2)
     title_x = round((cover_width - title_width)/2)
-    title_position = (title_x, title_y)
 
+     # 粘贴 LOGO
+    if logo:
+        logo = process_logo(logo, logo_size)
+        logo_width, logo_height = logo.size
+        # logo.save('wecover_logo_{}_{}.png'.format(logo_width, logo_height))
+        # 图文总宽
+        gap = 20
+        all_width = logo_width + gap + title_width
+
+        logo_y = round((cover_height - logo_height)/2)
+        logo_x = round((cover_width - all_width)/2)
+        logo_position = (logo_x, logo_y)
+        canvas.paste(logo, logo_position)
+
+        title_x = logo_x + logo_width + gap
+
+    title_position = (title_x, title_y)
     draw.text(title_position, title, fill=color, font=font)
     # draw.multiline_text(title_position, title, fill=color, font=font, spacing=10, align='center')
     canvas.show()

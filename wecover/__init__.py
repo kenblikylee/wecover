@@ -3,7 +3,7 @@ import re
 import glob
 from .image import openimg, makecover
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 _arg_pattern = re.compile(r'--\w+|-\w+')
 

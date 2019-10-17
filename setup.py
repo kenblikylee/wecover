@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="wecover",
-    version="0.1.0",
+    version="0.1.1",
     author="ken",
     author_email="kenbliky@gmail.com",
     description="微信公众号图文封面快速制作工具。",
