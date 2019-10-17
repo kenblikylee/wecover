@@ -45,6 +45,38 @@ wecover --logo logo.png --title "wecover 微信图文封面制作工具"
 wecover -l logo.png -t "wecover 微信图文封面制作工具"
 ```
 
+![](http://cdn.kenblog.top/wecover1.jpg)
+
+### 改变颜色
+
+#### 改变字体颜色
+
+``` sh
+wecover <title> [logo_path|logo_url] --color|-c <color>
+
+wecover <title> <logo_path|logo_url> <color>
+```
+
+#### 改变背景色
+
+``` sh
+wecover <title> [logo_path|logo_url] --bgcolor|-b <color>
+
+wecover <title> <logo_path|logo_url> <color> <bgcolor>
+```
+
+#### 示例：生成黑底白字
+
+``` sh
+wecover 微信图文封面制作工具 "http://cdn.kenblog.top/weixin.jpeg" white black
+# 或使用十六进制颜色值，颜色引号不能省略
+wecover 微信图文封面制作工具 "http://cdn.kenblog.top/weixin.jpeg" "#ffffff" "#000000"
+# 支持颜色缩写
+wecover 微信图文封面制作工具 "http://cdn.kenblog.top/weixin.jpeg" "#fff" "#000"
+```
+
+![](http://cdn.kenblog.top/wecover2.jpg)
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)

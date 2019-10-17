@@ -3,7 +3,7 @@ import re
 import glob
 from .image import openimg, makecover
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 _arg_pattern = re.compile(r'--\w+|-\w+')
 
@@ -81,7 +81,24 @@ def run(params):
         if logo:
             print('size: {}*{}'.format(*logo.size))
 
-    makecover(title, logo)
+    # 读取字体色
+    color = 'black'
+    if 'color' in args:
+        color = args['color']
+    elif 'c' in args:
+        color = args['c']
+    elif len(targets) > 2:
+        color = targets[2]
+    # 读取背景色
+    bgcolor = 'white'
+    if 'bgcolor' in args:
+        bgcolor = args['bgcolor']
+    elif 'b' in args:
+        bgcolor = args['b']
+    elif len(targets) > 3:
+        bgcolor = targets[3]
+
+    makecover(title, logo, color=color, bgcolor=bgcolor)
 
 def main():
     cmds = sys.argv[1:]

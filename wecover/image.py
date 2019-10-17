@@ -86,11 +86,11 @@ def load_font(font_size=50):
         font = ImageFont.load_default()
     return font
 
-def makecover(title, logo=None, color='#000', logo_size=(120, 120), cover_height=400):
+def makecover(title, logo=None, color='#000', bgcolor='#fff', logo_size=(120, 120), cover_height=400):
     cover_width = round(cover_height * 2.35)
     cover_size = (cover_width, cover_height)
     print('cover size: {}*{}'.format(*cover_size))
-    canvas = create_canvas(cover_size)
+    canvas = create_canvas(cover_size, bgcolor)
 
     draw = ImageDraw.Draw(canvas)
     # 绘制标题
