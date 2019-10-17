@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/kenblikylee/wecover.svg?branch=master)](https://travis-ci.org/kenblikylee/wecover)
 [![license](https://img.shields.io/github/license/kenblikylee/wecover)](https://github.com/kenblikylee/wecover/blob/master/LICENSE)
 
-微信公众号图文封面快速制作工具。
+微信公众号图文封面快速制作工具。一张`logo.png`或网络图片地址，一个标题，一行命令，一键生成微信图文封面，还可以任意改变颜色。
 
 ![](http://cdn.kenblog.top/wecover_example.png)
 
@@ -34,6 +34,8 @@ wecover <title> [logo_path|logo_url]
 
 wecover --title|-t <title> [--logo|-l <logo_path|logo_url>]
 ```
+
+LOGO可选。如果当前文件夹存在名为 `logo.png` , `logo.jpg`, `logo.jpeg` 任意一张图片文件，可以不提供 logo 参数，会自动读取其中一张图片作为 LOGO 。
 
 ### 基本使用
 
